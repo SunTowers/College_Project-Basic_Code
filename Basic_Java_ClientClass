@@ -1,0 +1,75 @@
+package Account;
+import java.time.LocalDate;
+import java.time.Period;
+
+public class Client extends Identification {
+    private String name;
+    private String cpf;
+    private String cellphone;
+    private String email;
+    private String address;
+    private LocalDate birthday;
+
+    public Client(String name, String cpf, String cellphone, String email, String address, LocalDate birthday) {
+        super();
+        this.setName(name);
+        this.setCpf(cpf);
+        this.setCellPhone(cellphone);
+        this.setEmail(email);
+        this.setAddress(address);
+        this.birthday = birthday;
+    }
+
+    public int getIdade() {
+        return Period.between(birthday, LocalDate.now()).getYears();
+    }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getCellPhone() {
+		return cellphone;
+	}
+
+	public void setCellPhone(String cellphone) {
+		this.cellphone = cellphone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public LocalDate getBirthDay() {
+		return birthday;
+	}
+
+	public void setBirthDay(LocalDate birthday) {
+		this.birthday = birthday;
+	}
+
+    // getters and setters for all fields
+}
