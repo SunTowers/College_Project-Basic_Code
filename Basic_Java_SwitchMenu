@@ -1,0 +1,36 @@
+package Account;
+
+import java.util.Scanner;
+
+public class MainMenu {
+	
+	static int Option = 0;
+	public static void run() {
+		//Scanner scannermenu = new Scanner(System.in);
+        while (Option != 3) {
+        	
+        	Scanner scanner = new Scanner(System.in);
+        	
+            System.out.println("1 - Mostrar clientes");
+            System.out.println("2 - Cadastrar cliente");
+            System.out.println("3 - Sair");
+            
+            Option = scanner.nextInt();
+            
+            switch (Option) {
+                case 1:
+                	Client.listarClientes();
+                    break;
+                case 2:
+                	Client.openAccount();
+                    break;
+                case 3:
+                    System.out.println("Saindo...");
+                    break;
+                default:
+                    System.out.println("Opção inválida. Por favor, tente novamente.");
+            }
+        }
+      //scannermenu.close();
+	}
+}
