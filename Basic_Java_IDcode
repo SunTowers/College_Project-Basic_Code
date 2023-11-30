@@ -1,0 +1,22 @@
+package Account;
+
+import java.util.UUID;
+import java.time.LocalDateTime;
+
+public abstract class Identification {
+    private UUID ID;
+    private LocalDateTime dataCriacao;
+
+    public Identification() {
+        this.ID = UUID.randomUUID();
+        this.dataCriacao = LocalDateTime.now();
+    }
+
+    public UUID getID() {
+        return ID;
+    }
+
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
+    }
+}
