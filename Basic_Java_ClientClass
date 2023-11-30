@@ -27,10 +27,64 @@ public class Client extends Identification {
         this.birthday = birthday;
     }
 
+	public static void openAccount() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite o nome:");
+        String name = scanner.nextLine();
+        
+        LocalDate birthday = null;
+        while (birthday == null) {
+            System.out.println("Digite a data de nascimento (formato: AAAA-MM-DD):");
+            String birthdate = scanner.nextLine();
+            try {
+                birthday = LocalDate.parse(birthdate);
+            } catch (DateTimeParseException e) {
+                System.out.println("Erro: A data de nascimento inserida não é válida. Por favor, tente novamente.");
+                birthday = null;
+            }
+        }
+
+        System.out.println("Digite o CPF:");
+        String cpf = scanner.nextLine();
+
+        System.out.println("Digite o número do celular:");
+        String cellphone = scanner.nextLine();
+
+        System.out.println("Digite o e-mail:");
+        String email = scanner.nextLine();
+
+        System.out.println("Digite o endereço:");
+        String address = scanner.nextLine();
+        
+        //scanner.close();
+
+        Client.allClients.add( new Client(name, cpf, cellphone, email, address, birthday));
+    }
+	
+	public static void listarClientes() {
+        System.out.println("ID | Data de Criação | Nome | CPF | Celular | E-mail | Endereço | Data de Nascimento | Idade");
+        System.out.println("---------------------------------------------------------------------------------------------------");
+
+        for (Client client : allClients) {
+            System.out.println(client.getID() + " | " +
+                               client.getDataCriacao() + " | " +
+                               client.getName() + " | " +
+                               client.getCpf() + " | " +
+                               client.getCellPhone() + " | " +
+                               client.getEmail() + " | " +
+                               client.getAddress() + " | " +
+                               client.getBirthDay() + " | " +
+                               client.getIdade());
+        }
+    }
+	
     public int getIdade() {
         return Period.between(birthday, LocalDate.now()).getYears();
     }
 
+    
+    // getters and setters for all fields
 	public String getName() {
 		return name;
 	}
@@ -77,60 +131,4 @@ public class Client extends Identification {
 	public void setBirthDay(LocalDate birthday) {
 		this.birthday = birthday;
 	}
-
-    // getters and setters for all fields
-	
-	
-	public static void openAccount() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Digite o nome:");
-        String name = scanner.nextLine();
-        
-        LocalDate birthday = null;
-        while (birthday == null) {
-            System.out.println("Digite a data de nascimento (formato: AAAA-MM-DD):");
-            String birthdate = scanner.nextLine();
-            try {
-                birthday = LocalDate.parse(birthdate);
-            } catch (DateTimeParseException e) {
-                System.out.println("Erro: A data de nascimento inserida não é válida. Por favor, tente novamente.");
-                birthday = null;
-            }
-        }
-
-        System.out.println("Digite o CPF:");
-        String cpf = scanner.nextLine();
-
-        System.out.println("Digite o número do celular:");
-        String cellphone = scanner.nextLine();
-
-        System.out.println("Digite o e-mail:");
-        String email = scanner.nextLine();
-
-        System.out.println("Digite o endereço:");
-        String address = scanner.nextLine();
-        
-        scanner.close();
-
-        Client.allClients.add( new Client(name, cpf, cellphone, email, address, birthday));
-    }
-	
-	public static void listarClientes() {
-        System.out.println("ID | Data de Criação | Nome | CPF | Celular | E-mail | Endereço | Data de Nascimento | Idade");
-        System.out.println("---------------------------------------------------------------------------------------------------");
-
-        for (Client client : allClients) {
-            System.out.println(client.getID() + " | " +
-                               client.getDataCriacao() + " | " +
-                               client.getName() + " | " +
-                               client.getCpf() + " | " +
-                               client.getCellPhone() + " | " +
-                               client.getEmail() + " | " +
-                               client.getAddress() + " | " +
-                               client.getBirthDay() + " | " +
-                               client.getIdade());
-        }
-    }
-	
 }
